@@ -1,12 +1,10 @@
-package com.nuclearfarts.mappingtool.tsrg;
+package com.nuclearfarts.mappingtool.util;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
-
-import com.nuclearfarts.mappingtool.util.ParameterRemapper;
 
 public class LocalVarClassRemapper extends ClassRemapper {
 	

@@ -16,10 +16,10 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 
-import com.nuclearfarts.mappingtool.tsrg.LocalVarClassRemapper;
 import com.nuclearfarts.mappingtool.tsrg.mapping.FieldMapping;
 import com.nuclearfarts.mappingtool.tsrg.mapping.MethodMapping;
 import com.nuclearfarts.mappingtool.tsrg.mapping.ParameterMapping;
+import com.nuclearfarts.mappingtool.util.LocalVarClassRemapper;
 import com.nuclearfarts.mappingtool.util.PathDepthComparator;
 
 public class MCPMappings {

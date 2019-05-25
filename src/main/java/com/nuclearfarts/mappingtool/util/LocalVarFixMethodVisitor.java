@@ -1,10 +1,8 @@
-package com.nuclearfarts.mappingtool.tsrg;
+package com.nuclearfarts.mappingtool.util;
 
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
-
-import com.nuclearfarts.mappingtool.util.ParameterRemapper;
 
 public class LocalVarFixMethodVisitor extends MethodVisitor {
 

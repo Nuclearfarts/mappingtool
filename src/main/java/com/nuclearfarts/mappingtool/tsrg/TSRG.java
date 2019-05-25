@@ -19,6 +19,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 
 import com.nuclearfarts.mappingtool.tsrg.mapping.ClassMapping;
+import com.nuclearfarts.mappingtool.util.LocalVarClassRemapper;
 import com.nuclearfarts.mappingtool.util.PathDepthComparator;
 
 public class TSRG {
