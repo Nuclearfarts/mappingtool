@@ -144,9 +144,14 @@ public class TSRGBasedRemapper extends Remapper implements ParameterRemapper {
 		if(paramName.charAt(0) == 0x2603) {
 			MethodMapping parent = getMethodMapping(owner, methodName, methodDescriptor);
 			if(parent != null) {
+				String[] splitName = parent.newName.split("_");
+				if(splitName.length != 3) {
+					return "localVar_" + localVarIndex;
+				}
+				//System.out.println("work");
 				return "p_" + parent.newName.split("_")[1] + "_" + localVarIndex + "_";
 			} else {
-				return paramName;
+				return "localVar_" + localVarIndex;
 			}
 		} else {
 			return paramName;

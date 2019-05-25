@@ -11,7 +11,6 @@ public class LocalVarFixMethodVisitor extends MethodVisitor {
 	public final String methodName;
 	public final String desc;
 	private final ParameterRemapper remapper;
-	private int paramsVisited = 0;
 	
 	public LocalVarFixMethodVisitor(MethodVisitor methodVisitor, String owner, String name, String desc, int params, ParameterRemapper remapper) {
 		super(Opcodes.ASM6, methodVisitor);
@@ -24,11 +23,7 @@ public class LocalVarFixMethodVisitor extends MethodVisitor {
 	
 	public void visitLocalVariable(String name, String desc, String sig, Label start, Label end, int idx) {
 		//Minecraft's obfuscator calls every local variable a unicode snowman.
-		if(paramsVisited < params) {
-			remapper.mapParameterName(owner, methodName, desc, name, idx);
-			paramsVisited++;
-		}
-		name = "localvar_" + idx;
+		name = remapper.mapParameterName(owner, methodName, this.desc, name, idx);
 		super.visitLocalVariable(name, desc, sig, start, end, idx);
 	}
 }
