@@ -29,5 +29,12 @@ dependencies {
     implementation 'org.ow2.asm:asm-tree:6.2.1'
 
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+}
+
+jar {
+	manifest {
+		attributes (
+			"Main-Class": "com.nuclearfarts.mappingtool.cli.MappingToolCLI"
+		)
+	}
 }
