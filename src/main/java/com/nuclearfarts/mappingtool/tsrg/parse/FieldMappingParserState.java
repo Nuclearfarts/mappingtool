@@ -1,6 +1,6 @@
 package com.nuclearfarts.mappingtool.tsrg.parse;
 
-import com.nuclearfarts.mappingtool.tsrg.mapping.FieldMapping;
+import com.nuclearfarts.mappingtool.util.mapping.FieldMapping;
 import com.nuclearfarts.mappingtool.util.parse.ParserState;
 import com.nuclearfarts.mappingtool.util.parse.TerminatedStringParserState;
 

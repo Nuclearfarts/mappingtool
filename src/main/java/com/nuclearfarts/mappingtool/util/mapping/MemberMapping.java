@@ -1,4 +1,4 @@
-package com.nuclearfarts.mappingtool.tsrg.mapping;
+package com.nuclearfarts.mappingtool.util.mapping;
 
 
 /**

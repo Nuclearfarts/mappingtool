@@ -2,7 +2,7 @@ package com.nuclearfarts.mappingtool.mcpmapping.parse;
 
 import java.util.List;
 
-import com.nuclearfarts.mappingtool.tsrg.mapping.ParameterMapping;
+import com.nuclearfarts.mappingtool.util.mapping.ParameterMapping;
 import com.nuclearfarts.mappingtool.util.parse.ParserState;
 import com.nuclearfarts.mappingtool.util.parse.RepeatingParserState;
 import com.nuclearfarts.mappingtool.util.parse.TerminatedStringParserState;

@@ -2,10 +2,10 @@ package com.nuclearfarts.mappingtool.mcpmapping;
 
 import org.objectweb.asm.commons.Remapper;
 
-import com.nuclearfarts.mappingtool.tsrg.mapping.FieldMapping;
-import com.nuclearfarts.mappingtool.tsrg.mapping.MethodMapping;
-import com.nuclearfarts.mappingtool.tsrg.mapping.ParameterMapping;
 import com.nuclearfarts.mappingtool.util.ParameterRemapper;
+import com.nuclearfarts.mappingtool.util.mapping.FieldMapping;
+import com.nuclearfarts.mappingtool.util.mapping.MethodMapping;
+import com.nuclearfarts.mappingtool.util.mapping.ParameterMapping;
 
 public class MCPMappingBasedRemapper extends Remapper implements ParameterRemapper {
 	

@@ -2,7 +2,7 @@ package com.nuclearfarts.mappingtool.tsrg.parse;
 
 import java.util.function.Supplier;
 
-import com.nuclearfarts.mappingtool.tsrg.mapping.MemberMapping;
+import com.nuclearfarts.mappingtool.util.mapping.MemberMapping;
 import com.nuclearfarts.mappingtool.util.parse.ParserState;
 
 public class MemberMappingParserState extends ParserState<MemberMapping> {

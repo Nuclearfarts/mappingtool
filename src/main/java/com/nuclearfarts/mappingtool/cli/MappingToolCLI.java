@@ -12,10 +12,10 @@ import com.nuclearfarts.mappingtool.mcpmapping.parse.CSVFieldMappingParserState;
 import com.nuclearfarts.mappingtool.mcpmapping.parse.CSVMethodMappingParserState;
 import com.nuclearfarts.mappingtool.mcpmapping.parse.CSVParameterMappingParserState;
 import com.nuclearfarts.mappingtool.tsrg.TSRG;
-import com.nuclearfarts.mappingtool.tsrg.mapping.FieldMapping;
-import com.nuclearfarts.mappingtool.tsrg.mapping.MethodMapping;
-import com.nuclearfarts.mappingtool.tsrg.mapping.ParameterMapping;
 import com.nuclearfarts.mappingtool.tsrg.parse.TSRGBaseParserState;
+import com.nuclearfarts.mappingtool.util.mapping.FieldMapping;
+import com.nuclearfarts.mappingtool.util.mapping.MethodMapping;
+import com.nuclearfarts.mappingtool.util.mapping.ParameterMapping;
 import com.nuclearfarts.mappingtool.util.parse.LineSeparatedBaseParserState;
 import com.nuclearfarts.mappingtool.util.parse.StatedParser;
 

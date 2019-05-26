@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.nuclearfarts.mappingtool.tsrg.mapping.ClassMapping;
-import com.nuclearfarts.mappingtool.tsrg.mapping.FieldMapping;
-import com.nuclearfarts.mappingtool.tsrg.mapping.MethodMapping;
+import com.nuclearfarts.mappingtool.util.mapping.ClassMapping;
+import com.nuclearfarts.mappingtool.util.mapping.FieldMapping;
+import com.nuclearfarts.mappingtool.util.mapping.MethodMapping;
 import com.nuclearfarts.mappingtool.util.parse.ParserState;
 import com.nuclearfarts.mappingtool.util.parse.TerminatedStringParserState;
 
