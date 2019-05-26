@@ -19,7 +19,7 @@ public class MCPMappingBasedRemapper extends Remapper implements ParameterRemapp
 	public String mapMethodName(String owner, String name, String descriptor) {
 		MethodMapping mapping = mappings.methods.get(name);
 		if(mapping != null) {
-			System.out.println("mapped method " + name + " to " + mapping.newName);
+			//System.out.println("mapped method " + name + " to " + mapping.newName);
 			return mapping.newName;
 		}
 		return name;
@@ -29,7 +29,7 @@ public class MCPMappingBasedRemapper extends Remapper implements ParameterRemapp
 	public String mapFieldName(String owner, String name, String descriptor) {
 		FieldMapping mapping = mappings.fields.get(name);
 		if(mapping != null) {
-			System.out.println("mapped field " + name + " to " + mapping.newName);
+			//System.out.println("mapped field " + name + " to " + mapping.newName);
 			return mapping.newName;
 		}
 		return name;
@@ -39,7 +39,7 @@ public class MCPMappingBasedRemapper extends Remapper implements ParameterRemapp
 	public String mapParameterName(String owner, String methodName, String methodDescriptor, String paramName, int localVarIndex) {
 		ParameterMapping mapping = mappings.parameters.get(paramName);
 		if(mapping != null) {
-			System.out.println("mapped param " + paramName + " to " + mapping.newName);
+			//System.out.println("mapped param " + paramName + " to " + mapping.newName);
 			return mapping.newName;
 		}
 		return paramName;

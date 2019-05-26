@@ -47,9 +47,6 @@ public class LineSeparatedBaseParserState<T> extends ParserState<List<T>> {
 	@Override
 	public List<T> get() {
 		//Null check removes the trailing newline error.
-		for(ParserState<T> p : parsers) {
-			System.out.println(p.get());
-		}
 		return parsers.stream().map(p -> p.get()).filter(p -> p != null).collect(Collectors.toList());
 	}
 
