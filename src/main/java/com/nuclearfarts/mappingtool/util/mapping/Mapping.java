@@ -6,6 +6,7 @@ public abstract class Mapping {
 	
 	public abstract String getStringIdentifier();
 	public abstract Mapping reverse(Remapper remapper);
+	public abstract String stringify();
 	
 	public final String originalName;
 	public final String newName;

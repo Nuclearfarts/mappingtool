@@ -14,8 +14,13 @@ public class ParameterMapping extends Mapping {
 	}
 
 	@Override
-	public Mapping reverse(Remapper remapper) {
+	public ParameterMapping reverse(Remapper remapper) {
 		return new ParameterMapping(newName, originalName);
+	}
+
+	@Override
+	public String stringify() {
+		return new StringBuilder(originalName).append(' ').append(newName).toString();
 	}
 
 }

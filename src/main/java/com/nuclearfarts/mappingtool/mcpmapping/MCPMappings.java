@@ -9,15 +9,21 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.commons.Remapper;
 import org.objectweb.asm.tree.ClassNode;
 
+import com.nuclearfarts.mappingtool.tsrg.TSRG;
 import com.nuclearfarts.mappingtool.util.LocalVarClassRemapper;
 import com.nuclearfarts.mappingtool.util.PathDepthComparator;
+import com.nuclearfarts.mappingtool.util.mapping.ClassMapping;
 import com.nuclearfarts.mappingtool.util.mapping.FieldMapping;
 import com.nuclearfarts.mappingtool.util.mapping.MethodMapping;
 import com.nuclearfarts.mappingtool.util.mapping.ParameterMapping;
@@ -61,6 +67,34 @@ public class MCPMappings {
 						});
 			}
 		}
+	}
+
+	public MCPMappings reverse() {
+		List<FieldMapping> revFields = fields.values().stream().map(m -> m.reverse(null)).collect(Collectors.toList());
+		List<MethodMapping> revMethods = methods.values().stream().map(m -> m.reverse(null))
+				.collect(Collectors.toList());
+		List<ParameterMapping> revParams = parameters.values().stream().map(m -> m.reverse(null))
+				.collect(Collectors.toList());
+		return new MCPMappings(revFields, revMethods, revParams);
+	}
+
+	public TSRG toTSRG(TSRG base) {
+		// this sets the mapping to do nothing to classes. limitations of the TSRG
+		// format.
+		List<ClassMapping> newClasses = base.mappings.values().stream().map(m -> this.processMapping(m, base.remapper)).collect(Collectors.toList());
+		return new TSRG(newClasses);
+	}
+
+	private ClassMapping processMapping(ClassMapping classMapping, Remapper descMapper) {
+		List<FieldMapping> newFields = classMapping.fields.values().stream()
+				.map(m -> new FieldMapping(m.newName, remapper.mapFieldName(classMapping.newName, m.newName, "")))
+				.filter(m -> !m.newName.equals(m.originalName)) //don't bother putting in mappings if the MCP mappings have nothing for that member anyway.
+				.collect(Collectors.toList());
+		List<MethodMapping> newMethods = classMapping.methods.values().stream()
+				.map(m -> new MethodMapping(m.newName, remapper.mapMethodName(classMapping.newName, m.newName, m.desc), descMapper.mapMethodDesc(m.desc)))
+				.filter(m -> !m.newName.equals(m.originalName))
+				.collect(Collectors.toList());
+		return new ClassMapping(classMapping.newName, classMapping.newName, newFields, newMethods);
 	}
 
 	private void visitFile(Path path) {

@@ -18,7 +18,16 @@ public class MethodMapping extends MemberMapping {
 
 	@Override
 	public MethodMapping reverse(Remapper remapper) {
-		return new MethodMapping(newName, originalName, remapper.mapMethodDesc(desc));
+		if(remapper != null) {
+			return new MethodMapping(newName, originalName, remapper.mapMethodDesc(desc));
+		} else {
+			return new MethodMapping(newName, originalName, desc);
+		}
+	}
+
+	@Override
+	public String stringify() {
+		return new StringBuilder(originalName).append(' ').append(desc).append(' ').append(newName).toString();
 	}
 
 

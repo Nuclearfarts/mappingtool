@@ -30,13 +30,16 @@ public class MappingToolCLI {
 			apply(args, true);
 			break;
 		case "applymcp":
-			applymcp(args, false);
+			applymcp(args);
 			break;
-		case "reversemcp":
-			applymcp(args, true);
+		case "mcp2srg":
+			mcp2srg(args);
 			break;
 		default:
-			System.err.println("Usage: java -jar mappingtool.jar <apply|reverse|applymcp|reversemcp> <path/to/srgfile.tsrg|path/to/mcpmappingsdirectory> <path/to/input.jar> <path/to/output.jar> [path/to/inheritance.jar]");
+			System.err.println("Usage: java -jar mappingtool.jar <apply|reverse|applymcp> <path/to/srgfile.tsrg|path/to/mcpmappingsdirectory> <path/to/input.jar> <path/to/output.jar> [path/to/inheritance.jar]");
+			System.err.println("OR java -jar mappingtool.jar mcp2srg <path/to/mcpmappingsdirectory> <path/to/output.tsrg> <path/to/basesrg.tsrg>");
+			System.err.println("for mcp2srg, the base SRG is used to structure the MCP mapping -- it should be an obfuscated to SRG mapping. The output is an SRG to MCP mapping in TSRG format.");
+			System.err.println("using applymcp is preferable to using mcp2srg followed by apply, as applymcp supports parameter names.");
 			System.err.println("(Inheritance jar is only needed if you're applying mappings to a mod/plugin, not if you're applying them to the minecraft jar.)");
 		}
 		System.out.println("done");
@@ -56,13 +59,7 @@ public class MappingToolCLI {
 		mappings.apply(Paths.get(out));
 	}
 	
-	private static TSRG tsrgFrom(Path p) throws IOException {
-		String tsrg = new String(Files.readAllBytes(p));
-		StatedParser<TSRG> parser = new StatedParser<TSRG>(new TSRGBaseParserState());
-		return parser.parse(tsrg);
-	}
-	
-	public static void applymcp(String[] args, boolean reverse) throws IOException {
+	public static void applymcp(String[] args) throws IOException {
 		String mappingDir = args[1];
 		String in = args[2];
 		String out = args[3];
@@ -71,6 +68,23 @@ public class MappingToolCLI {
 		MCPMappings mcp = mcpFrom(mapPath);
 		mcp.apply(Paths.get(out));
 	}
+	
+	public static void mcp2srg(String[] args) throws IOException {
+		String mappingDir = args[1];
+		String tsrgOut = args[2];
+		String baseSrg = args[3];
+		TSRG base = tsrgFrom(Paths.get(baseSrg));
+		MCPMappings mappings = mcpFrom(Paths.get(mappingDir));
+		TSRG newTSRG = mappings.toTSRG(base);
+		newTSRG.save(Paths.get(tsrgOut));
+	}
+	
+	private static TSRG tsrgFrom(Path p) throws IOException {
+		String tsrg = new String(Files.readAllBytes(p));
+		StatedParser<TSRG> parser = new StatedParser<TSRG>(new TSRGBaseParserState());
+		return parser.parse(tsrg);
+	}
+	
 	
 	private static MCPMappings mcpFrom(Path mapPath) throws IOException {
 		String fieldCSV = new String(Files.readAllBytes(mapPath.resolve("fields.csv")));

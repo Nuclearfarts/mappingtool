@@ -38,4 +38,17 @@ public class ClassMapping extends Mapping {
 	public String toString() {
 		return super.toString() + "[" + fields.values().toString() + "," + methods.values().toString() + "]";
 	}
+
+	@Override
+	public String stringify() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(originalName).append(' ').append(newName).append('\n');
+		for(FieldMapping f : fields.values()) {
+			builder.append('\t').append(f.stringify()).append('\n');
+		}
+		for(MethodMapping m : methods.values()) {
+			builder.append('\t').append(m.stringify()).append('\n');
+		}
+		return builder.toString();
+	}
 }

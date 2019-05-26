@@ -19,4 +19,9 @@ public class FieldMapping extends MemberMapping {
 		return originalName;
 	}
 
+	@Override
+	public String stringify() {
+		return new StringBuilder(originalName).append(' ').append(newName).toString();
+	}
+
 }

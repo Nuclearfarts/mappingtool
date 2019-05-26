@@ -25,7 +25,7 @@ import com.nuclearfarts.mappingtool.util.mapping.ClassMapping;
 public class TSRG {
 	
 	public final Map<String, ClassMapping> mappings = new HashMap<String, ClassMapping>();
-	private final TSRGBasedRemapper remapper;
+	public final TSRGBasedRemapper remapper;
 	
 	public TSRG(Collection<ClassMapping> mappings) {
 		remapper = new TSRGBasedRemapper(this);
@@ -62,6 +62,14 @@ public class TSRG {
 		try(FileSystem zipFS = FileSystems.newFileSystem(uri, env)){
 			Files.walk(zipFS.getPath("/")).forEach(this::visitInheritance);
 		}
+	}
+	
+	public void save(Path p) throws IOException {
+		StringBuilder builder = new StringBuilder();
+		for(ClassMapping c : mappings.values()) {
+			builder.append(c.stringify());
+		}
+		Files.write(p, builder.toString().getBytes());
 	}
 	
 	public TSRG reverse() {
