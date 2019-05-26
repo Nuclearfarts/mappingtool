@@ -10,7 +10,7 @@ public abstract class RepeatingParserState<T, R> extends ParserState<R> {
 	private final List<ParserState<T>> parsers = new ArrayList<ParserState<T>>();
 	
 	public RepeatingParserState(int times) {
-		this.timesRemaining = times - 1;
+		this.timesRemaining = times;
 	}
 	
 	protected abstract ParserState<T> supplyParser(boolean isFinal);
