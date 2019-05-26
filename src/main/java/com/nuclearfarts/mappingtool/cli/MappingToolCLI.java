@@ -35,9 +35,9 @@ public class MappingToolCLI {
 		case "reversemcp":
 			applymcp(args, true);
 			break;
-		case "default":
-			System.out.println("Usage: java -jar mappingtool.jar <apply|reverse|applymcp|reversemcp> <path/to/srgfile.tsrg|path/to/mcpmappingsdirectory> <path/to/input.jar> <path/to/output.jar> [path/to/inheritance.jar]");
-			System.out.println("(Inheritance jar is only needed if you're applying mappings to a mod/plugin, not if you're applying them to the minecraft jar.)");
+		default:
+			System.err.println("Usage: java -jar mappingtool.jar <apply|reverse|applymcp|reversemcp> <path/to/srgfile.tsrg|path/to/mcpmappingsdirectory> <path/to/input.jar> <path/to/output.jar> [path/to/inheritance.jar]");
+			System.err.println("(Inheritance jar is only needed if you're applying mappings to a mod/plugin, not if you're applying them to the minecraft jar.)");
 		}
 		System.out.println("done");
 	}
