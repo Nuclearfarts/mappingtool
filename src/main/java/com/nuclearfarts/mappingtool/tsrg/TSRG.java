@@ -18,7 +18,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 
-import com.nuclearfarts.mappingtool.util.LocalVarClassRemapper;
+import com.nuclearfarts.mappingtool.util.MappingToolClassRemapper;
 import com.nuclearfarts.mappingtool.util.PathDepthComparator;
 import com.nuclearfarts.mappingtool.util.mapping.ClassMapping;
 
@@ -105,7 +105,7 @@ public class TSRG {
 			ClassNode classNode = new ClassNode();
 			try(InputStream in = new BufferedInputStream(Files.newInputStream(path))) {
 				//System.out.println(path);
-				new ClassReader(in).accept(new LocalVarClassRemapper(classNode, remapper, remapper), 0);
+				new ClassReader(in).accept(new MappingToolClassRemapper(classNode, remapper, remapper), 0);
 				Files.delete(path);
 			} catch (IOException e) {
 				e.printStackTrace();
